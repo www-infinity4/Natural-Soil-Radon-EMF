@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natural Soil Radon EMF — Signal Tractor System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────────────────────────── -->
+<header>
+  <span class="logo">🌱</span>
+  <div>
+    <h1>Natural Soil Radon EMF</h1>
+    <p>Signal Tractor System</p>
+  </div>
+</header>
+
+<!-- ── Hero ───────────────────────────────────────────────────────── -->
+<section class="hero">
+  <h2>Electromagnetic Soil Tilling — No Moving Parts</h2>
+  <p>
+    Converts naturally occurring soil gas into ionised, para/diamagnetic states
+    that till the ground via electromagnetic perturbation — zero fuel burn,
+    zero soil compaction.
+  </p>
+</section>
+
+<main>
+
+  <!-- ── Module overview ──────────────────────────────────────────── -->
+  <h2 style="margin-bottom:1rem;color:var(--green)">System Modules</h2>
+  <div class="modules">
+    <div class="module">
+      <div class="icon">📡</div>
+      <h4>Radon Beacon</h4>
+      <p>Dual-pole sync at Rn-222 alpha energy (~5.5 MeV)</p>
+    </div>
+    <div class="module">
+      <div class="icon">〰️</div>
+      <h4>Trepel Resonance</h4>
+      <p>Standing-wave feedback loop until soil levitation</p>
+    </div>
+    <div class="module">
+      <div class="icon">🛡️</div>
+      <h4>Safety Override</h4>
+      <p>Real-time radon monitoring + polarity-reversal pulse</p>
+    </div>
+    <div class="module">
+      <div class="icon">🔄</div>
+      <h4>Gas Fallback</h4>
+      <p>Auto-switches Rn-222 → CH₄ → CO₂ → He-4</p>
+    </div>
+    <div class="module">
+      <div class="icon">🚁</div>
+      <h4>Drone Anchor</h4>
+      <p>Drone-deployed self-anchoring PRIMARY spike</p>
+    </div>
+    <div class="module">
+      <div class="icon">🎛️</div>
+      <h4>Soil Tiller</h4>
+      <p>Orchestrates the full tilling session lifecycle</p>
+    </div>
+  </div>
+
+  <!-- ── Simulation + Results ─────────────────────────────────────── -->
+  <div class="grid-2">
+
+    <!-- Simulation form -->
+    <div class="card">
+      <h3>⚙️ Run Simulation</h3>
+      <form class="sim-form" id="simForm">
+
+        <label for="anchor_depth_m">Anchor Depth (m)</label>
+        <input type="number" id="anchor_depth_m" name="anchor_depth_m"
+               value="1.5" min="0.1" step="0.1" required />
+
+        <label for="soil_column_m">Soil Column (m)</label>
+        <input type="number" id="soil_column_m" name="soil_column_m"
+               value="3.0" min="0.1" step="0.1" required />
+
+        <label for="radon_bq_m3">Radon (Bq/m³)</label>
+        <input type="number" id="radon_bq_m3" name="radon_bq_m3"
+               value="80.0" min="0" step="1" />
+
+        <label for="methane_ppm">Methane (ppm)</label>
+        <input type="number" id="methane_ppm" name="methane_ppm"
+               value="0" min="0" step="1" />
+
+        <label for="co2_ppm">CO₂ (ppm)</label>
+        <input type="number" id="co2_ppm" name="co2_ppm"
+               value="0" min="0" step="1" />
+
+        <label for="helium_ppm">Helium (ppm)</label>
+        <input type="number" id="helium_ppm" name="helium_ppm"
+               value="0" min="0" step="1" />
+
+        <label for="soil_resistance">Soil Resistance</label>
+        <input type="number" id="soil_resistance" name="soil_resistance"
+               value="1.0" min="0.1" step="0.1" />
+
+        <label for="max_resonance_iterations">Max Resonance Iterations</label>
+        <input type="number" id="max_resonance_iterations"
+               name="max_resonance_iterations"
+               value="40" min="1" step="1" />
+
+        <button type="submit" class="btn-run">▶ Run Tilling Session</button>
+      </form>
+    </div>
+
+    <!-- Results panel -->
+    <div class="card">
+      <h3>📊 Session Results</h3>
+
+      <div id="spinner">
+        <span class="spin"></span> Running simulation…
+      </div>
+
+      <div id="results">
+        <div id="resultBadge" class="result-badge"></div>
+
+        <div class="result-row">
+          <span class="label">Selected Gas</span>
+          <span class="value" id="rGas">—</span>
+        </div>
+        <div class="result-row">
+          <span class="label">Levitation Achieved</span>
+          <span class="value" id="rLevitation">—</span>
+        </div>
+        <div class="result-row">
+          <span class="label">Resonance Iterations</span>
+          <span class="value" id="rIterations">—</span>
+        </div>
+        <div class="result-row">
+          <span class="label">Safety Overrides Fired</span>
+          <span class="value" id="rOverrides">—</span>
+        </div>
+        <div class="result-row">
+          <span class="label">Signal Strength</span>
+          <span class="value" id="rSignal">—</span>
+        </div>
+        <div class="result-row">
+          <span class="label">Beacon Synced</span>
+          <span class="value" id="rSynced">—</span>
+        </div>
+        <div id="faultRow" class="result-row" style="display:none">
+          <span class="label">Fault Reason</span>
+          <span class="value" id="rFault" style="color:#b71c1c">—</span>
+        </div>
+
+        <p style="margin-top:.75rem;font-size:.8rem;color:var(--muted)">
+          Phase log:
+        </p>
+        <div class="phase-log" id="rPhaseLog"></div>
+      </div>
+
+      <p id="noResults" style="color:var(--muted);font-size:.9rem">
+        Configure parameters and click <strong>Run Tilling Session</strong>
+        to see results here.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Concept ──────────────────────────────────────────────────── -->
+  <div class="card" style="margin-bottom:1.5rem">
+    <h3>💡 How It Works</h3>
+    <p style="color:var(--muted);font-size:.9rem;line-height:1.8">
+      Every agricultural acre already has trace <strong>Rn-222</strong> seeping
+      from uranium decay in the bedrock and soil matrix. The Signal Tractor
+      doesn't create radon — it tunes into it. A buried underground pole
+      (<em>PRIMARY beacon</em>) excites existing radon atoms via targeted EM
+      resonance, liberating alpha-particle energy without letting the gas migrate
+      upward. That stripped radiation ionises the pore water and metallic
+      fractions, turning the liquefied layer into a self-amplifying
+      para/diamagnetic slurry that an overhead pole (<em>SECONDARY beacon</em>)
+      yanks upward — tilling the soil in perfectly disturbance-free sheets.
+    </p>
+  </div>
+
+  <!-- ── Gas Priority ─────────────────────────────────────────────── -->
+  <div class="card">
+    <h3>🔁 Gas Priority Order</h3>
+    <p style="color:var(--muted);font-size:.9rem;margin-bottom:.75rem">
+      When local radon is too low the beacon auto-switches to the next most
+      abundant ground gas.
+    </p>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+      <span class="phase-tag" style="background:#c8e6c9">Rn-222 (preferred)</span>
+      <span style="color:var(--muted)">→</span>
+      <span class="phase-tag">CH₄ (methane)</span>
+      <span style="color:var(--muted)">→</span>
+      <span class="phase-tag">CO₂</span>
+      <span style="color:var(--muted)">→</span>
+      <span class="phase-tag">He-4</span>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────────────── -->
+<footer>
+  Natural Soil Radon EMF — Signal Tractor System &nbsp;|&nbsp;
+  Zero soil compaction · No fuel burn · No moving parts
+</footer>
+
+<script>
+  const form     = document.getElementById("simForm");
+  const spinner  = document.getElementById("spinner");
+  const results  = document.getElementById("results");
+  const noRes    = document.getElementById("noResults");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Hide results, show spinner
+    results.classList.remove("visible");
+    noRes.style.display  = "none";
+    spinner.classList.add("visible");
+
+    const payload = {
+      anchor_depth_m:          parseFloat(document.getElementById("anchor_depth_m").value),
+      soil_column_m:            parseFloat(document.getElementById("soil_column_m").value),
+      radon_bq_m3:              parseFloat(document.getElementById("radon_bq_m3").value),
+      methane_ppm:              parseFloat(document.getElementById("methane_ppm").value),
+      co2_ppm:                  parseFloat(document.getElementById("co2_ppm").value),
+      helium_ppm:               parseFloat(document.getElementById("helium_ppm").value),
+      soil_resistance:          parseFloat(document.getElementById("soil_resistance").value),
+      max_resonance_iterations: parseInt(document.getElementById("max_resonance_iterations").value, 10),
+      radon_monitor_readings:   [],
+    };
+
+    try {
+      const resp = await fetch("/api/run", {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify(payload),
+      });
+      const data = await resp.json();
+
+      spinner.classList.remove("visible");
+
+      if (data.error) {
+        noRes.textContent = "⚠️ " + data.error;
+        noRes.style.display = "block";
+        return;
+      }
+
+      // Populate results
+      const badge = document.getElementById("resultBadge");
+      badge.textContent = data.succeeded ? "✅ SUCCESS" : "❌ FAULT";
+      badge.className   = "result-badge " + (data.succeeded ? "success" : "fault");
+
+      document.getElementById("rGas").textContent        = data.selected_gas;
+      document.getElementById("rLevitation").textContent = data.levitation_achieved ? "Yes" : "No";
+      document.getElementById("rIterations").textContent = data.resonance_iterations;
+      document.getElementById("rOverrides").textContent  = data.override_count;
+
+      if (data.sync_state) {
+        document.getElementById("rSignal").textContent = data.sync_state.signal_strength.toFixed(4);
+        document.getElementById("rSynced").textContent = data.sync_state.is_synced ? "Yes" : "No";
+      }
+
+      const faultRow = document.getElementById("faultRow");
+      if (data.fault_reason) {
+        document.getElementById("rFault").textContent = data.fault_reason;
+        faultRow.style.display = "flex";
+      } else {
+        faultRow.style.display = "none";
+      }
+
+      const phaseLog = document.getElementById("rPhaseLog");
+      phaseLog.innerHTML = "";
+      (data.phase_log || []).forEach((p) => {
+        const tag = document.createElement("span");
+        tag.className   = "phase-tag";
+        tag.textContent = p;
+        phaseLog.appendChild(tag);
+      });
+
+      results.classList.add("visible");
+    } catch (err) {
+      spinner.classList.remove("visible");
+      noRes.textContent = "⚠️ Network error: " + err.message;
+      noRes.style.display = "block";
+    }
+  });
+</script>
+
+</body>
+</html>

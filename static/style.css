@@ -1,0 +1,211 @@
+/* Natural Soil Radon EMF — Signal Tractor System */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:  #2e7d32;
+  --green2: #43a047;
+  --dark:   #1b2a1e;
+  --card:   #ffffff;
+  --bg:     #f1f8f2;
+  --text:   #1c2e20;
+  --muted:  #5a7260;
+  --border: #c8e6c9;
+  --accent: #e8f5e9;
+  --rad:    8px;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ── Header ──────────────────────────────────────────────────────── */
+header {
+  background: var(--dark);
+  color: #fff;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+header .logo { font-size: 2rem; }
+header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: .02em; }
+header p  { font-size: .9rem; opacity: .7; }
+
+/* ── Hero ─────────────────────────────────────────────────────────── */
+.hero {
+  background: linear-gradient(135deg, var(--green) 0%, var(--dark) 100%);
+  color: #fff;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.hero h2 { font-size: 2.2rem; margin-bottom: .75rem; }
+.hero p  { font-size: 1.1rem; max-width: 640px; margin: 0 auto; opacity: .88; }
+
+/* ── Layout ───────────────────────────────────────────────────────── */
+main { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+
+/* ── Cards ────────────────────────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--rad);
+  padding: 1.5rem;
+}
+.card h3 {
+  font-size: 1.05rem;
+  color: var(--green);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+/* ── Module grid ──────────────────────────────────────────────────── */
+.modules {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.module {
+  background: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: var(--rad);
+  padding: 1rem;
+}
+.module .icon { font-size: 1.6rem; margin-bottom: .4rem; }
+.module h4 { font-size: .9rem; font-weight: 700; color: var(--green); }
+.module p  { font-size: .8rem; color: var(--muted); margin-top: .25rem; }
+
+/* ── Form ─────────────────────────────────────────────────────────── */
+.sim-form label {
+  display: block;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: .25rem;
+}
+.sim-form input[type="number"] {
+  width: 100%;
+  padding: .45rem .7rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: .9rem;
+  margin-bottom: .85rem;
+  background: var(--bg);
+  color: var(--text);
+}
+.sim-form input[type="number"]:focus {
+  outline: 2px solid var(--green2);
+  border-color: var(--green2);
+}
+
+.btn-run {
+  width: 100%;
+  padding: .75rem;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: var(--rad);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: .03em;
+  transition: background .15s;
+}
+.btn-run:hover  { background: var(--green2); }
+.btn-run:active { background: var(--dark); }
+
+/* ── Results ──────────────────────────────────────────────────────── */
+#results { display: none; }
+#results.visible { display: block; }
+
+.result-badge {
+  display: inline-block;
+  padding: .3rem .9rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: .95rem;
+  margin-bottom: 1rem;
+}
+.result-badge.success { background: #c8e6c9; color: #1b5e20; }
+.result-badge.fault   { background: #ffcdd2; color: #b71c1c; }
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  padding: .4rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: .9rem;
+}
+.result-row:last-child { border-bottom: none; }
+.result-row .label { color: var(--muted); }
+.result-row .value { font-weight: 600; }
+
+.phase-log {
+  margin-top: .75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+.phase-tag {
+  background: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .15rem .55rem;
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--green);
+}
+
+.error-msg {
+  color: #b71c1c;
+  background: #ffebee;
+  border: 1px solid #ffcdd2;
+  border-radius: var(--rad);
+  padding: .75rem 1rem;
+  font-size: .9rem;
+}
+
+/* ── Spinner ──────────────────────────────────────────────────────── */
+#spinner {
+  display: none;
+  text-align: center;
+  padding: 1rem;
+  color: var(--muted);
+  font-size: .9rem;
+}
+#spinner.visible { display: block; }
+.spin {
+  display: inline-block;
+  width: 22px; height: 22px;
+  border: 3px solid var(--border);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  vertical-align: middle;
+  margin-right: .5rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Footer ───────────────────────────────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: .8rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
