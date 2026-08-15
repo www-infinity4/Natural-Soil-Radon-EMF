@@ -140,3 +140,4 @@ Natural-Soil-Radon-EMF/
 │   └── test_soil_tiller.py
 └── README.md
 ```
+<script src="https://www-infinity4.github.io/Mint-For-Infinity/infinity-wallet-menu.js" defer></script>
